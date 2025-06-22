@@ -1,0 +1,550 @@
+/* interviewer-app/src/index.css - סגנונות כלליים ומאוחדים עבור כל דפי האפליקציה */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f2f5;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* יישור לראש העמוד לתוכן שניתן לגלול */
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+    box-sizing: border-box;
+    direction: rtl; /* כיוון קריאה מימין לשמאל */
+    text-align: right; /* יישור טקסט לימין */
+}
+
+/* Container for forms/pages */
+.container {
+    background-color: #ffffff;
+    padding: 24px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    width: 100%;
+    max-width: 900px; /* Base max-width for desktop */
+    box-sizing: border-box;
+    margin: 0 auto; /* Center the container */
+    direction: rtl; /* הגדר כיוון RTL עבור הקונטיינר */
+}
+
+/* Responsive adjustments for larger screens */
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1200px;
+    }
+}
+@media (min-width: 1600px) {
+    .container {
+        max-width: 1600px; /* Consistent wide view */
+    }
+}
+/* Responsive adjustments for mobile screens */
+@media (max-width: 768px) {
+    .container {
+        padding: 16px;
+        border-radius: 0;
+        box-shadow: none;
+    }
+}
+
+/* ספציפי לדף הנחיתה: */
+body.landing-page .container {
+    max-width: 600px;
+    text-align: center;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+/* ספציפי לדף "הדיווחים שלי": */
+body.my-submissions-page .container {
+    max-width: 900px; /* או רוחב מתאים לטבלה זו */
+}
+
+
+h1 {
+    text-align: center;
+    color: #333333;
+    margin-bottom: 24px;
+    font-size: 1.8em;
+    font-weight: bold;
+}
+/* יישור כותרות ספציפי לדף הנחיתה */
+body.landing-page h1 {
+    text-align: center;
+}
+
+h2 {
+    color: #333333;
+    margin-top: 20px;
+    margin-bottom: 15px;
+    font-size: 1.5em;
+    font-weight: bold;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+    text-align: right; /* יישור ימין של תתי הכותרות בטפסים */
+}
+
+h3 { /* סגנון חדש עבור תת כותרות קטנות יותר */
+    color: #333333;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    font-size: 1.2em;
+}
+
+/* Form grid layout */
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive grid columns */
+    gap: 20px;
+    margin-bottom: 20px;
+}
+/* Responsive grid adjustments for specific breakpoints */
+@media (min-width: 1200px) {
+    .form-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+@media (min-width: 1600px) {
+    .form-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+@media (max-width: 600px) {
+    .form-grid {
+        grid-template-columns: 1fr; /* Single column on small screens */
+    }
+}
+
+/* Form group styling (label and input) */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    text-align: right;
+}
+
+.form-group label {
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #555;
+    font-size: 0.95em;
+}
+
+.form-group label.required::after { /* Style for required indicator */
+    content: ' *';
+    color: #F44336;
+    font-weight: bold;
+    margin-right: 2px;
+}
+
+
+/* Input field styling */
+.form-group input[type="text"],
+.form-group input[type="tel"],
+.form-group input[type="email"],
+.form-group input[type="number"],
+.form-group input[type="password"], /* הוספה לוודא שמוגדר */
+.form-group textarea,
+.form-group select {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1.1em;
+    color: #333;
+    box-sizing: border-box;
+    width: 100%;
+    direction: rtl; /* Right-to-left text input */
+    text-align: right; /* Right-aligned text input */
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+/* Focus state for input fields */
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+}
+
+/* Textarea specific styling */
+.form-group textarea {
+    min-height: 100px;
+    resize: vertical; /* Allow vertical resizing */
+}
+
+/* Select dropdown specific styling */
+.form-group select {
+    appearance: none; /* Remove default dropdown arrow */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    /* Custom SVG arrow for select */
+    background-image: url('data:image/svg+xml;utf8,<svg fill="%23333333" xmlns="[http://www.w3.org/2000/svg](http://www.w3.org/2000/svg)" viewBox="0 0 24 24" width="18px" height="18px"><path d="M7 10l5 5 5-5z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: left 10px center; /* Position arrow on the left for RTL */
+    padding-left: 30px; /* Space for the arrow */
+    direction: rtl;
+    text-align: right;
+}
+
+/* Error styling for form fields */
+.form-group.error input,
+.form-group.error textarea,
+.form-group.error select {
+    border-color: #e74c3c; /* Red border for errors */
+}
+
+.error-message {
+    color: #e74c3c;
+    font-size: 0.85em;
+    margin-top: 5px;
+    text-align: right;
+}
+
+.info-message { /* Added for duplicate ID warning */
+    color: #555;
+    font-size: 0.85em;
+    margin-top: 5px;
+    text-align: right;
+}
+
+/* Message box styling */
+.message-box {
+    background-color: #f8f8f8;
+    color: #333333;
+    padding: 12px;
+    border: 1px solid #cccccc;
+    border-radius: 6px;
+    margin-top: 16px;
+    margin-bottom: 16px;
+    text-align: right;
+    font-size: 0.9em;
+    font-weight: normal;
+    /* NEW: Ensure it always takes space, but hide content if empty */
+    min-height: 45px; /* Adjust based on typical message height */
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.3s ease, visibility 0.3s ease, height 0.3s ease, padding 0.3s ease, margin 0.3s ease; /* Add transitions for smooth hide/show */
+    box-sizing: border-box; /* Important for padding */
+}
+/* When message is not present or meant to be hidden */
+.message-box.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none; /* Make it unclickable when hidden */
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    height: 0; /* Collapse height to zero */
+    overflow: hidden;
+}
+
+.message-box.success {
+    background-color: #e6ffe6;
+    color: #2e7d32;
+    border-color: #a3e6a3;
+}
+.message-box.danger {
+    background-color: #ffe6e6;
+    color: #c62828;
+    border-color: #e6a3a3;
+}
+.message-box.warning {
+    background-color: #fff3e0;
+    color: #ff8f00;
+    border-color: #ffd699;
+}
+
+/* Button container and button styling */
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 24px;
+    flex-wrap: wrap; /* Allow buttons to wrap on smaller screens */
+}
+
+.action-button {
+    background-color: #3498db;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 6px;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* הוספתי צל קטן */
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px; /* Space between text and icon */
+}
+.action-button:hover {
+    background-color: #2980b9;
+    transform: translateY(-1px); /* Slight lift effect on hover */
+}
+.action-button:active {
+    transform: translateY(0); /* Reset on click */
+}
+.action-button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+    box-shadow: none; /* הסר צל כאשר מושבת */
+    transform: none; /* הסר אפקט הרמה כאשר מושבת */
+}
+
+.action-button.secondary {
+    background-color: #ffffff;
+    color: #666666;
+    border: 1px solid #dddddd;
+}
+.action-button.secondary:hover {
+    background-color: #f0f0f0;
+    color: #333333;
+}
+
+.action-button.danger { /* Added danger button style */
+    background-color: #e74c3c;
+    color: white;
+}
+.action-button.danger:hover {
+    background-color: #c0392b;
+}
+
+/* Spinner animation */
+.spinner {
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #3498db;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    animation: spin 1s linear infinite;
+    margin: 0 auto;
+    display: inline-block; /* Changed to inline-block for use with text */
+    vertical-align: middle;
+    margin-left: 8px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Section divider for visual separation */
+.section-divider {
+    border-top: 1px solid #eee;
+    margin: 30px 0;
+}
+
+/* New styles for interviewer panel */
+.interviewer-panel {
+    background-color: #e9f5ff; /* Light blue background */
+    border: 1px solid #cce7ff;
+    border-radius: 8px;
+    padding: 15px 20px;
+    margin-bottom: 25px;
+    text-align: right;
+    display: flex;
+    flex-direction: column; /* Stack elements vertically */
+    align-items: flex-end; /* Align to the right */
+}
+
+.interviewer-display {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end; /* Align greeting to the right */
+    width: 100%;
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #2c3e50;
+    flex-wrap: wrap; /* Allow wrapping on small screens */
+    gap: 10px; /* Space between elements */
+}
+
+.interviewer-display span {
+    white-space: nowrap; /* Prevent name/UID from wrapping */
+}
+
+.interviewer-edit-area {
+    width: 100%;
+    /* NEW: Use max-height and overflow hidden for smooth collapse/expand */
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-out, opacity 0.3s ease-out; /* Smooth transition */
+    opacity: 0;
+}
+
+.interviewer-edit-area.show {
+    max-height: 300px; /* Sufficient height to show content. Adjust if content is taller */
+    opacity: 1;
+}
+
+.interviewer-edit-area h3 {
+    text-align: center;
+    color: #3498db;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    font-size: 1.3em;
+}
+
+.interviewer-inputs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+    margin-bottom: 20px;
+}
+@media (max-width: 600px) {
+    .interviewer-inputs-grid {
+        grid-template-columns: 1fr;
+    }
+}
+.small-button { /* Smaller button for edit/confirm */
+    padding: 8px 15px;
+    font-size: 0.85em;
+    margin-top: 10px;
+}
+
+/* Additional common styles for navigation and tables (from previous steps, combined here) */
+.top-buttons-container { /* עבור סרגל הכפתורים העליון בדף כל הדיווחים */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+.entry-options { /* עבור דף הנחיתה */
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+/* טבלת נתונים (עבור דף הרשימה ו"הדיווחים שלי") */
+.data-table-container {
+    overflow-x: auto; /* אפשר גלילה אופקית במסכים קטנים */
+    width: 100%;
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #fcfcfc; /* רקע קל לטבלה */
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05); /* צל קטן לטבלה */
+    text-align: right; /* RTL */
+}
+.data-table th, .data-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    vertical-align: top;
+    text-align: right;
+    font-size: 0.95em;
+    color: #555;
+    word-break: break-word; /* וודא שתוכן ארוך יורד שורה */
+}
+.data-table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+    color: #333;
+    white-space: nowrap; /* מנע כותרות מליפול שורה */
+    position: sticky; /* שמור כותרות גלויות בגלילה אופקית */
+    top: 0;
+    z-index: 1; /* וודא שהכותרת מעל התוכן הגולל */
+}
+.data-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+.data-table tbody tr:hover {
+    background-color: #eaf6ff; /* רקע בהיר בריחוף */
+}
+.data-table td.actions {
+    white-space: nowrap; /* מנע כפתורים מליפול שורה */
+    text-align: center; /* מרכז כפתורי פעולה */
+}
+
+/* סטטוסים בטבלה (לא בשימוש בדף זה אבל נשאר לכלליות) */
+.status-badge {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.8em;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+    white-space: nowrap;
+}
+.status-yes { background-color: #4caf50; } /* Green for 'כן' */
+.status-no { background-color: #f44336; } /* Red for 'לא' */
+.status-not_sure { background-color: #ffc107; color: #333; } /* Yellow for 'לא בטוח' */
+.status-default { background-color: #757575; } /* Grey for undefined/default */
+
+/* קישורים בתוך טבלאות */
+.action-link {
+    color: #3498db;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s ease;
+}
+.action-link:hover {
+    color: #2980b9;
+    text-decoration: underline;
+}
+
+/* כפתורי מיון (עבור דף כל הדיווחים) */
+.sort-button {
+    background: none;
+    border: none;
+    color: #555;
+    cursor: pointer;
+    font-size: 0.9em;
+    font-weight: bold;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 0;
+    margin-right: 5px;
+}
+.sort-button i {
+    font-size: 0.8em;
+}
+.sort-button:hover {
+    color: #333;
+}
+.sort-button.active {
+    color: #3498db;
+}
+
+/* רספונסיביות ספציפית לטבלה במסכים קטנים (הדיווחים שלי) */
+@media (max-width: 768px) {
+    .data-table, .data-table tbody, .data-table tr, .data-table th, .data-table td {
+        display: block; /* Make table responsive by stacking cells */
+    }
+    .data-table thead {
+        display: none; /* Hide header on small screens */
+    }
+    .data-table tr {
+        margin-bottom: 15px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        overflow: hidden; /* For border-radius on rows */
+    }
+    .data-table td:before {
+        content: attr(data-label);
+        position: absolute;
+        right: 10px;
+        width: 45%;
+        padding-left: 10px;
+        font-weight: bold;
+        color: #333;
+        text-align: left; /* Label alignment */
+    }
+}
+@media (max-width: 480px) {
+    .action-button {
+        width: 100%;
+    }
+    .button-group {
+        flex-direction: column;
+    }
+}
